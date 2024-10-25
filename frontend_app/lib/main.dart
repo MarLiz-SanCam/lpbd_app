@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_app/design/app_colors.dart';
+import 'package:frontend_app/pages/system_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
         const SnackBar(content: Text('Login exitoso')),
       );
       //TODO: Importar la página de inicio del sistema
-      //Navigator.push(context, MaterialPageRoute(builder: (context) => Sistema()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Sistema()));
     } else {
       setState(() {
         message = 'Error: ${response.body}';
@@ -99,6 +100,16 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
+  //NOTE: función para registro de usuario
+  //TODO: Implementar la función de registro de usuario
+
+  //NOTE: función para cambiar datos de usuario
+  //TODO: Implementar la función de cambio de datos de usuario
+
+  //NOTE: función para eliminar usuario
+  //TODO: Implementar la función de eliminación de usuario
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,10 +119,10 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: colors.accentuated,
         title: Text('Iniciar Sesión'),),
       body: Container(
-        color: Colors.white,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+             color: Colors.white,
+             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
             TextField(
               controller: usernameController,
               decoration: InputDecoration(labelText: 'User_name'),
@@ -130,8 +141,7 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 20),
             Text(message),
           ],
-        ),
-      ),
+        ),),
     );
   }
 }
