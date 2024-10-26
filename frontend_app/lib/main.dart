@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_app/design/app_colors.dart';
+import 'package:frontend_app/pages/add_user.dart';
+import 'package:frontend_app/pages/see_users.dart';
 import 'package:frontend_app/pages/system_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -108,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
 
   //NOTE: función para eliminar usuario
   //TODO: Implementar la función de eliminación de usuario
-  
+
 
 
   @override
@@ -118,27 +120,46 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: colors.accentuated,
         title: Text('Iniciar Sesión'),),
-      body: Container(
-             color: Colors.white,
+      body: Center(
+             //color: Colors.white,
              child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-            TextField(
+            Container(
+              width: 300,
+              child: TextField(
               controller: usernameController,
               decoration: InputDecoration(labelText: 'User_name'),
             ),
-            SizedBox(height: 20),
+            ),
+            Container(
+              width: 300 ,
+              child: 
             TextField(
               controller: passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
+            ),
             ),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: login,
               child: Text('Iniciar Sesión'),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegistroUsuario()));
+              },
+              child: Text('Registrar Usuario'),
+            ),
+            SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => ConsultarUsuarios()));
+              },
+              child: Text('Ver Usuarios'),
+            ),
             Text(message),
           ],
         ),),

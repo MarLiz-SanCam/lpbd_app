@@ -3,7 +3,7 @@ const router = Router();
 
 const mysqlConnection = require('../database/database');
 router.get('/', (req, res) => {
-    res.status(200).json('server on port 8000 and database is connecter'); 
+    res.status(200).json('server on port 8000 and database is connected'); 
 });
 
 //obtener usuarios
@@ -20,7 +20,7 @@ router.get('/:usuarios', (req, res) => {
 //obtener usuario
 router.get('/:usuarios/:idusuario', (req, res) => {
     const {idusuario} = req.params;
-    mysqlConnection.query('select * from usuarios where id = ?;',[id], (error, rows, fields) =>{
+    mysqlConnection.query('select * from usuarios where id = ?;',[idusuario], (error, rows, fields) =>{
         if(!error){
             res.json(rows);
         }else{
@@ -46,9 +46,10 @@ router.post('/:usuarios', (req, res) => {
 
 //actualizar usuario
 router.put('/:usuarios/:idusuario', (req, res) => {
-    const {idusuario, nombre_usuario, nombre, apellido, mail, password} = req.body;
+    const {idusuario}= req.params
+    const {nombre_usuario, nombre, apellido, password} = req.body;
     console.log(req.body);
-    mysqlConnection.query('update usuarios set nombre_usuario = ?, nombre = ?, apellido = ?, password? where idusuario = ?;',
+    mysqlConnection.query('update usuarios set nombre_usuario = ?, nombre = ?, apellido = ?, password = ? where idusuario = ?;',
     [nombre_usuario, nombre, apellido, password, idusuario],(error, rows, fields)=>{
         if(!error){
             res.json({Status: 'Usuario actualizado'});
